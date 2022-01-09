@@ -5,23 +5,25 @@ from CardGenerator import *
 
 def generateFiles(path):
     cards = readCSV(path) if path.endswith(".csv") else readJSON(path)
-    print(cards)
-    generateIndividualCardsJPEG(cards, values["colorChooserButton"])
+    card_imgs = generateIndividualCardsJPEG(cards, values["colorChooserButton"], values["folderBrowserInput"])
+    generatePrintablePDFs(card_imgs, values["folderBrowserInput"])
 
 
 if __name__ == '__main__':
     window = sg.Window(
         title="CodeRush - Gerador de Cartas",
+        icon="assets/images/icon.ico",
+        titlebar_icon="assets/images/icon.ico",
         layout=layout,
-        margins=(200, 150)
+        margins=(50, 50)
     )
 
     while True:
         event, values = window.read()
-        if event in (None, 'Exit'):
-            break
         if event == "generateButton":
-            # VERIFICAR OUTROS CAMPOS #
-            if values["fileBrowserInput"]:
+            if values["fileBrowserInput"] and values["folderBrowserInput"] and values["colorChooserButton"]:
                 generateFiles(values["fileBrowserInput"])
+        elif event in (None, 'Exit'):
+            break
+
     window.Close()

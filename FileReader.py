@@ -3,7 +3,6 @@ import json
 
 
 def readCSV(path):
-    print("Lendo arquivo CSV...")
     rows = []
     with open(path, encoding='utf-8') as file:
         csv_reader = csv.reader(file)
@@ -25,7 +24,6 @@ def readCSV(path):
 
 
 def readJSON(path):
-    print("Lendo arquivo JSON...")
     with open(path, encoding='utf-8') as file:
         data = json.load(file)
     file.close()

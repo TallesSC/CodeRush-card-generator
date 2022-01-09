@@ -2,9 +2,16 @@ import PySimpleGUI as sg
 
 config_column = [
     [
+        sg.Image(
+            filename="assets/images/CodeRush_logo.png",
+            subsample=2,
+            pad=((50, 0), (0, 25))
+        )
+    ],
+    [
         sg.Text(
             text="Arquivo (.csv / .json)",
-            pad=((10, 0), (25, 0))
+            pad=((10, 0), (10, 0))
         ),
     ],
     [
@@ -18,13 +25,14 @@ config_column = [
             file_types=(
                 ("CSV Files", "*.csv"),
                 ("JSON Files", "*.json")
-            )
+            ),
+            size=(8, 1)
         )
     ],
     [
         sg.Text(
             text="Pasta de destino",
-            pad=((10, 0), (25, 0))
+            pad=((10, 0), (10, 0))
         ),
     ],
     [
@@ -34,13 +42,15 @@ config_column = [
         ),
         sg.FolderBrowse(
             button_text="Procurar",
-            key="folderBrowserInput"
+            key="folderBrowserInput",
+            auto_size_button=True,
+            size=(8, 1)
         )
     ],
     [
         sg.Text(
             text="Cor de fundo",
-            pad=((10, 0), (25, 0))
+            pad=((10, 0), (10, 0))
         ),
     ],
     [
@@ -49,12 +59,16 @@ config_column = [
         ),
         sg.ColorChooserButton(
             button_text="Escolher",
-            key="colorChooserButton"
+            key="colorChooserButton",
+            size=(8, 1)
         )
     ],
     [
         sg.Button(
             button_text="Gerar",
+            expand_y=True,
+            expand_x=True,
+            pad=((0, 0), (40, 0)),
             key="generateButton"
         )
     ]
@@ -62,7 +76,6 @@ config_column = [
 
 layout = [
     [
-        sg.Column(config_column),
-        sg.VSeparator(),
+        sg.Column(config_column)
     ]
 ]
